@@ -13,16 +13,49 @@ namespace PhDownloaderV1
 {
     public partial class FormLogin : Form
     {
+
+        //--Variável criada para mover a tela sem bordas
+        bool mover = false;
+        Point posicaoInicial;
+
         public FormLogin()
         {
             InitializeComponent();
+
+            //--Centraliza o Form na tela
+            this.CenterToScreen();
         }
 
-        protected override void OnPaint(PaintEventArgs e)
+
+        //--------------------------  BOTÃO FECHAR ----------------------------
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
-            GraphicsPath forma = new GraphicsPath();
-            forma.AddEllipse(0, 0, btnRedondo.Width, btnRedondo.Height);
-            btnRedondo.Region = new Region(forma);
+            this.Close();
+        }
+
+        //--------------------------- MOVER JANELA ---------------------------
+
+        //--Evento MouseDown (Quando clicar e segurar na janela)
+        private void FormLogin_MouseDown(object sender, MouseEventArgs e)
+        {
+            mover = true;
+            posicaoInicial = new Point(e.X, e.Y);
+        }
+
+        //--Evento MouseUp (Quando terminamos o movimento da Janela)
+        private void FormLogin_MouseUp(object sender, MouseEventArgs e)
+        {
+            mover = false;
+        }
+
+        //--Evento MouseMove (Mover a Janela)
+        private void FormLogin_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mover)
+            {
+                Point novo = PointToScreen(e.Location);
+                Location = new Point(novo.X - this.posicaoInicial.X, novo.Y - this.posicaoInicial.Y);
+            }
         }
 
     }
