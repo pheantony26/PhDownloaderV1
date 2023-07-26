@@ -86,5 +86,8 @@
   <ItemGroup>
     <None Include="Imagens\Circulo Tela Login.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Imagens\Botao Fechar.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

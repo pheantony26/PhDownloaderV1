@@ -58,5 +58,10 @@ namespace PhDownloaderV1
             }
         }
 
+        //-------------------------- BOTÃO FECHAR --------------------------------
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

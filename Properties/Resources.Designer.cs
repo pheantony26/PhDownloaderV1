@@ -63,6 +63,16 @@ namespace PhDownloaderV1.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Botao_Fechar {
+            get {
+                object obj = ResourceManager.GetObject("Botao Fechar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Circulo_Tela_Login {
             get {
                 object obj = ResourceManager.GetObject("Circulo Tela Login", resourceCulture);
