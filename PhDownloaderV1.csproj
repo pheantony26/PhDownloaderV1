@@ -89,5 +89,17 @@
   <ItemGroup>
     <None Include="Imagens\Botao Fechar.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Imagens\Maior que.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Imagens\Login Facebook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Imagens\Login Google.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Imagens\Login Apple.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
