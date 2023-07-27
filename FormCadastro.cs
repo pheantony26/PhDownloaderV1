@@ -25,5 +25,20 @@ namespace PhDownloaderV1
         {
             this.Close();
         }
+
+        //------------------------ BOTÃO CADASTRAR ------------------
+        private void btnCadastrar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string strSQL = "Select usuario from dbo.cliente where usuario = " + txtNomeUsuario.Text;
+                cm.Connection = cn;
+            }
+            catch (Exception Erro)
+            {
+
+                throw;
+            }
+        }
     }
 }

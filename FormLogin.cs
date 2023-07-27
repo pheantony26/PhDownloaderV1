@@ -82,10 +82,5 @@ namespace PhDownloaderV1
             Cadastro.ShowDialog();
         }
 
-        //----------------------- LOAD FORMLOGIN --------------------------
-        private void FormLogin_Load(object sender, EventArgs e)
-        {
-            cn.Open();
-        }
     }
 }
