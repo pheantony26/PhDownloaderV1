@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace PhDownloaderV1
 {
@@ -25,6 +26,9 @@ namespace PhDownloaderV1
             //--Centraliza o Form na tela
             this.CenterToScreen();
         }
+
+        //------------------------ CONEXÃO SQL -------------------
+        //SqlConnection cn = new SqlConnection(@"Data Source = DESKTOP-1G4DC21\SQLEXPRESS; integrated security = SSPI, initial catalog = db_serverphdownloader");
 
 
         //--------------------------  BOTÃO FECHAR ----------------------------
@@ -62,6 +66,19 @@ namespace PhDownloaderV1
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        //------------------------- CAMPO SENHA ---------------------------------
+        private void textboxSenha_TextChanged(object sender, EventArgs e)
+        {
+            //--Deixar a senha oculta
+            textboxSenha.PasswordChar = '*';
+        }
+
+        private void lblInscrevase_Click(object sender, EventArgs e)
+        {
+            FormCadastro Cadastro = new FormCadastro();
+            Cadastro.ShowDialog();
         }
     }
 }

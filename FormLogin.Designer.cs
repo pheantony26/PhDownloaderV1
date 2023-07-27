@@ -88,6 +88,7 @@
             this.textboxSenha.Name = "textboxSenha";
             this.textboxSenha.Size = new System.Drawing.Size(215, 25);
             this.textboxSenha.TabIndex = 5;
+            this.textboxSenha.TextChanged += new System.EventHandler(this.textboxSenha_TextChanged);
             // 
             // lblLogin
             // 
@@ -154,6 +155,7 @@
             this.lblInscrevase.Size = new System.Drawing.Size(70, 15);
             this.lblInscrevase.TabIndex = 11;
             this.lblInscrevase.Text = "Inscrever-se";
+            this.lblInscrevase.Click += new System.EventHandler(this.lblInscrevase_Click);
             // 
             // lblNaoTemConta
             // 
@@ -169,7 +171,7 @@
             // 
             this.lblLoginCom.AutoSize = true;
             this.lblLoginCom.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLoginCom.Location = new System.Drawing.Point(423, 300);
+            this.lblLoginCom.Location = new System.Drawing.Point(423, 301);
             this.lblLoginCom.Name = "lblLoginCom";
             this.lblLoginCom.Size = new System.Drawing.Size(73, 15);
             this.lblLoginCom.TabIndex = 13;
