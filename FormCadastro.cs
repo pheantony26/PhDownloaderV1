@@ -19,5 +19,11 @@ namespace PhDownloaderV1
             //--Centraliza o Form na tela
             this.CenterToScreen();
         }
+
+        //------------------------- BOTÃO FECHAR ---------------------
+        private void btnFecharCadastro_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

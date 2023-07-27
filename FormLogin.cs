@@ -28,8 +28,9 @@ namespace PhDownloaderV1
         }
 
         //------------------------ CONEXÃO SQL -------------------
-        //SqlConnection cn = new SqlConnection(@"Data Source = DESKTOP-1G4DC21\SQLEXPRESS; integrated security = SSPI, initial catalog = db_serverphdownloader");
-
+        SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-1G4DC21\SQLEXPRESS; integrated security=SSPI; initial catalog=db_serverphdownloader");
+        SqlCommand cm = new SqlCommand();
+        SqlDataReader dt;
 
         //--------------------------  BOTÃO FECHAR ----------------------------
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -79,6 +80,12 @@ namespace PhDownloaderV1
         {
             FormCadastro Cadastro = new FormCadastro();
             Cadastro.ShowDialog();
+        }
+
+        //----------------------- LOAD FORMLOGIN --------------------------
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+            cn.Open();
         }
     }
 }

@@ -43,11 +43,11 @@
             this.pictureLoginApple = new System.Windows.Forms.PictureBox();
             this.pictureLoginGoogle = new System.Windows.Forms.PictureBox();
             this.pictureLoginFacebook = new System.Windows.Forms.PictureBox();
-            this.btnFechar = new System.Windows.Forms.PictureBox();
+            this.btnFecharCadastro = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureLoginApple)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureLoginGoogle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureLoginFacebook)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFechar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFecharCadastro)).BeginInit();
             this.SuspendLayout();
             // 
             // painelLogin
@@ -210,17 +210,17 @@
             this.pictureLoginFacebook.TabIndex = 14;
             this.pictureLoginFacebook.TabStop = false;
             // 
-            // btnFechar
+            // btnFecharCadastro
             // 
-            this.btnFechar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFechar.Image = global::PhDownloaderV1.Properties.Resources.Botao_Fechar;
-            this.btnFechar.Location = new System.Drawing.Point(620, 3);
-            this.btnFechar.Name = "btnFechar";
-            this.btnFechar.Size = new System.Drawing.Size(26, 26);
-            this.btnFechar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnFechar.TabIndex = 3;
-            this.btnFechar.TabStop = false;
-            this.btnFechar.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.btnFecharCadastro.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFecharCadastro.Image = global::PhDownloaderV1.Properties.Resources.Botao_Fechar;
+            this.btnFecharCadastro.Location = new System.Drawing.Point(620, 3);
+            this.btnFecharCadastro.Name = "btnFecharCadastro";
+            this.btnFecharCadastro.Size = new System.Drawing.Size(26, 26);
+            this.btnFecharCadastro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnFecharCadastro.TabIndex = 3;
+            this.btnFecharCadastro.TabStop = false;
+            this.btnFecharCadastro.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // FormLogin
             // 
@@ -241,19 +241,20 @@
             this.Controls.Add(this.lblLogin);
             this.Controls.Add(this.textboxSenha);
             this.Controls.Add(this.textboxLogin);
-            this.Controls.Add(this.btnFechar);
+            this.Controls.Add(this.btnFecharCadastro);
             this.Controls.Add(this.painelLogin);
             this.Controls.Add(this.btnLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormLogin";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.FormLogin_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormLogin_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FormLogin_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FormLogin_MouseUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureLoginApple)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureLoginGoogle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureLoginFacebook)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFechar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFecharCadastro)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -263,7 +264,7 @@
 
         private System.Windows.Forms.Panel painelLogin;
         private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.PictureBox btnFechar;
+        private System.Windows.Forms.PictureBox btnFecharCadastro;
         private System.Windows.Forms.TextBox textboxLogin;
         private System.Windows.Forms.TextBox textboxSenha;
         private System.Windows.Forms.Label lblLogin;
