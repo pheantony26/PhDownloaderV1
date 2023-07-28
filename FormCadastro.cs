@@ -27,7 +27,7 @@ namespace PhDownloaderV1
 
 
         //------------------------ CONEXÃO SQL -------------------
-        SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-0K1VNAB\SQLEXPRESS; integrated security=SSPI; initial catalog=db_servidor");
+        SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-1G4DC21\SQLEXPRESS; integrated security=SSPI; initial catalog=db_serverphdownloader");
         SqlCommand cm = new SqlCommand();
         SqlDataReader dt;
 
@@ -62,27 +62,93 @@ namespace PhDownloaderV1
             }
         }
 
+        //---------------------- VARIÁVEIS PARA LIMPAR/DESABILITAR OS CAMPOS ----------------
+        public void limparCampos()
+        {
+            lblNomeCompleto.Text = "";
+            lblEmail.Text = "";
+            lblUsuario.Text = "";
+            lblSenha.Text = "";
+            lblConfirmaSenha.Text = "";
+        }
+
+
         //------------------------ BOTÃO CADASTRAR ------------------
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
+            //----- Select do SQL no Banco de Dados
             try
             {
-                string strSQL = "Select usuario from dbo.cliente where usuario = " + txtNomeUsuario.Text;
-                cm.Connection = cn;
-                cm.CommandText = strSQL;
+                //---- Abrir a conexão com o banco
                 cn.Open();
+
+                string strSQL = "Select usuario from dbo.clientes where usuario = " + txtNomeUsuario.Text;
+                //---- Use um comando SQL na conexão cn
+                cm.Connection = cn;
+                //---- O comando SQL será um comando de texto da variável strSQL
+                cm.CommandText = strSQL;
+                //---- Executando o comando no Banco de Dados na variável dt que receberá toda a tabela "usuário"
+                dt = cm.ExecuteReader();
+                //---- Se houver linhas com o mesmo usuário digitado, será retornada a mensagem
+                if (dt.HasRows) //---HasRows = Verdade que existe linhas iguais?
+                {
+                    MessageBox.Show("Usuário já cadastrado!", "Calma ai amigão", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    if (!dt.IsClosed) { dt.Close(); }
+                    //----Informando os cambos da tabela clientes e declarando variáveis
+                    strSQL = "insert into dbo.clientes(nome_cliente,email,usuario,senha,confirmar_senha)values(@nome,@email,@usuario,@senha1,@senha2)";
+                    
+                    //-------------------------- NOME COMPLETO -------------------------
+                    //----Recebendo o texto do campo nome e inserindo na variável
+                    cm.Parameters.Add("@nome", SqlDbType.VarChar).Value = txtNomeCompleto.Text;
+
+                    //-------------------------- EMAIL -------------------------
+                    //----Recebendo o texto do campo nome e inserindo na variável
+                    cm.Parameters.Add("@email", SqlDbType.VarChar).Value = txtEmail.Text;
+
+                    //-------------------------- USUARIO -------------------------
+                    //----Recebendo o texto do campo nome e inserindo na variável
+                    cm.Parameters.Add("@usuario", SqlDbType.VarChar).Value = txtNomeUsuario.Text;
+
+                    //-------------------------- SENHA -------------------------
+                    //----Recebendo o texto do campo nome e inserindo na variável
+                    cm.Parameters.Add("@senha1", SqlDbType.VarChar).Value = txtSenha.Text;
+
+                    //-------------------------- CONFIRMAR SENHA -------------------------
+                    //----Recebendo o texto do campo nome e inserindo na variável
+                    cm.Parameters.Add("@senha2", SqlDbType.VarChar).Value = txtConfirmarSenha.Text;
+
+
+
+                    //---- Use um comando SQL na conexão cn
+                    cm.Connection = cn;
+                    //---- O comando SQL será um comando de texto da variável strSQL
+                    cm.CommandText = strSQL;
+                    //---- Executar o comando
+                    cm.ExecuteNonQuery();
+
+                    //---- Mensagem confirmando o cadastro
+                    MessageBox.Show("Login criado com sucesso!", "Dados cadastrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    //---- Limpar os campos
+                    limparCampos();
+                    //---- 
+                    cm.Parameters.Clear();                    
+                }
+
             }
             catch (Exception Erro)
             {
-
+                MessageBox.Show(Erro.Message);              
             }
-            finally 
+            finally
             {
-                if (cn.State == ConnectionState.Open)
-                {
-                    cn.Close();
-                }
+                cn.Close();
             }
+
+
         }
 
 
