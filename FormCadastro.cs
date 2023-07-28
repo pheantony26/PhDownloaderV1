@@ -97,8 +97,8 @@ namespace PhDownloaderV1
                 else
                 {
                     if (!dt.IsClosed) { dt.Close(); }
-                    //----Informando os cambos da tabela clientes e declarando variáveis
-                    strSQL = "insert into dbo.clientes(nome_cliente,email,usuario,senha,confirmar_senha)values(@nome,@email,@usuario,@senha1,@senha2)";
+                    //----Informando os campos da tabela clientes e declarando variáveis
+                    strSQL = "insert into dbo.clientes(nome_cliente,email,usuario,senha,confirmar_senha)values(@nome,@email,@usuario,@senha1,@senha2)" ;
                     
                     //-------------------------- NOME COMPLETO -------------------------
                     //----Recebendo o texto do campo nome e inserindo na variável
