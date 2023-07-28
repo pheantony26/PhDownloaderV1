@@ -28,7 +28,7 @@ namespace PhDownloaderV1
         }
 
         //------------------------ CONEXÃO SQL -------------------
-        SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-1G4DC21\SQLEXPRESS; integrated security=SSPI; initial catalog=db_serverphdownloader");
+        SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-0K1VNAB\SQLEXPRESS; integrated security=SSPI; initial catalog=db_servidor");
         SqlCommand cm = new SqlCommand();
         SqlDataReader dt;
 
@@ -82,5 +82,9 @@ namespace PhDownloaderV1
             Cadastro.ShowDialog();
         }
 
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

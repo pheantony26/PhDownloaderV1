@@ -42,6 +42,7 @@
             this.txtConfirmarSenha = new System.Windows.Forms.TextBox();
             this.lblLogin = new System.Windows.Forms.Label();
             this.lblJaCadastrado = new System.Windows.Forms.Label();
+            this.lblSenhaNaoConfere = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.btnFecharCadastro)).BeginInit();
             this.SuspendLayout();
             // 
@@ -143,6 +144,7 @@
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(215, 25);
             this.txtSenha.TabIndex = 13;
+            this.txtSenha.TextChanged += new System.EventHandler(this.txtSenha_TextChanged);
             // 
             // lblConfirmaSenha
             // 
@@ -161,6 +163,7 @@
             this.txtConfirmarSenha.Name = "txtConfirmarSenha";
             this.txtConfirmarSenha.Size = new System.Drawing.Size(215, 25);
             this.txtConfirmarSenha.TabIndex = 15;
+            this.txtConfirmarSenha.TextChanged += new System.EventHandler(this.txtConfirmarSenha_TextChanged);
             // 
             // lblLogin
             // 
@@ -184,11 +187,23 @@
             this.lblJaCadastrado.TabIndex = 18;
             this.lblJaCadastrado.Text = "Já possui cadastro?";
             // 
+            // lblSenhaNaoConfere
+            // 
+            this.lblSenhaNaoConfere.AutoSize = true;
+            this.lblSenhaNaoConfere.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSenhaNaoConfere.ForeColor = System.Drawing.Color.Red;
+            this.lblSenhaNaoConfere.Location = new System.Drawing.Point(46, 361);
+            this.lblSenhaNaoConfere.Name = "lblSenhaNaoConfere";
+            this.lblSenhaNaoConfere.Size = new System.Drawing.Size(105, 15);
+            this.lblSenhaNaoConfere.TabIndex = 19;
+            this.lblSenhaNaoConfere.Text = "Senha nao confere";
+            // 
             // FormCadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(314, 489);
+            this.Controls.Add(this.lblSenhaNaoConfere);
             this.Controls.Add(this.lblJaCadastrado);
             this.Controls.Add(this.lblLogin);
             this.Controls.Add(this.lblConfirmaSenha);
@@ -206,6 +221,10 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormCadastro";
             this.Text = "FormCadastro";
+            this.Load += new System.EventHandler(this.FormCadastro_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormCadastro_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FormCadastro_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FormCadastro_MouseUp);
             ((System.ComponentModel.ISupportInitialize)(this.btnFecharCadastro)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -228,5 +247,6 @@
         private System.Windows.Forms.TextBox txtConfirmarSenha;
         private System.Windows.Forms.Label lblLogin;
         private System.Windows.Forms.Label lblJaCadastrado;
+        private System.Windows.Forms.Label lblSenhaNaoConfere;
     }
 }
