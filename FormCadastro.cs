@@ -65,11 +65,7 @@ namespace PhDownloaderV1
         //---------------------- VARIÁVEIS PARA LIMPAR/DESABILITAR OS CAMPOS ----------------
         public void limparCampos()
         {
-            lblNomeCompleto.Text = "";
-            lblEmail.Text = "";
-            lblUsuario.Text = "";
-            lblSenha.Text = "";
-            lblConfirmaSenha.Text = "";
+            txtNomeUsuario.Text = "";
         }
 
 
@@ -82,7 +78,7 @@ namespace PhDownloaderV1
                 //---- Abrir a conexão com o banco
                 cn.Open();
 
-                string strSQL = "Select usuario from dbo.clientes where usuario = " + txtNomeUsuario.Text;
+                string strSQL = "Select * from dbo.clientes where usuario = '" + txtNomeUsuario.Text + "'";
                 //---- Use um comando SQL na conexão cn
                 cm.Connection = cn;
                 //---- O comando SQL será um comando de texto da variável strSQL
@@ -93,6 +89,10 @@ namespace PhDownloaderV1
                 if (dt.HasRows) //---HasRows = Verdade que existe linhas iguais?
                 {
                     MessageBox.Show("Usuário já cadastrado!", "Calma ai amigão", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    //---- Limpar os campos
+                    limparCampos();
+
                 }
                 else
                 {
@@ -132,10 +132,11 @@ namespace PhDownloaderV1
                     //---- Mensagem confirmando o cadastro
                     MessageBox.Show("Login criado com sucesso!", "Dados cadastrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    //---- Limpar os campos
-                    limparCampos();
                     //---- 
-                    cm.Parameters.Clear();                    
+                    cm.Parameters.Clear();   
+                    
+                    this.Close();
+                   
                 }
 
             }
