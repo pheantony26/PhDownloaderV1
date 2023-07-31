@@ -93,6 +93,9 @@ namespace PhDownloaderV1
                     //---- Limpar os campos
                     limparCampos();
 
+                    //---- Mudar a cor do texto caso o Usuário já exista
+                    lblUsuario.ForeColor = System.Drawing.Color.Red;
+
                 }
                 else
                 {
@@ -132,9 +135,10 @@ namespace PhDownloaderV1
                     //---- Mensagem confirmando o cadastro
                     MessageBox.Show("Login criado com sucesso!", "Dados cadastrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    //---- 
+                    //---- Fechando a consulta no banco
                     cm.Parameters.Clear();   
                     
+                    //---- Fechar o form quando o login for cadastrado
                     this.Close();
                    
                 }
