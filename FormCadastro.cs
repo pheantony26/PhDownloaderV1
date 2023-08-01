@@ -72,6 +72,30 @@ namespace PhDownloaderV1
         //------------------------ BOTÃO CADASTRAR ------------------
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
+
+            //---- Validação se os campos estão vazios ou em branco
+            if (string.IsNullOrWhiteSpace(txtNomeCompleto.Text))
+            {
+                MessageBox.Show("Existem campos não preenchidos");
+            }
+            else if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                MessageBox.Show("Existem campos não preenchidos");
+            }
+            else if (string.IsNullOrWhiteSpace(txtNomeUsuario.Text))
+            {
+                MessageBox.Show("Existem campos não preenchidos");
+            }
+            else if (string.IsNullOrWhiteSpace(txtSenha.Text))
+            {
+                MessageBox.Show("Existem campos não preenchidos");
+            }
+            else if (string.IsNullOrWhiteSpace(txtConfirmarSenha.Text))
+            {
+                MessageBox.Show("Existem campos não preenchidos");
+            }
+
+
             //----- Select do SQL no Banco de Dados
             try
             {
@@ -187,5 +211,6 @@ namespace PhDownloaderV1
                 lblSenhaNaoConfere.Visible = false;
             }
         }
+
     }
 }
