@@ -28,7 +28,10 @@ namespace PhDownloaderV1
         }
 
         //------------------------ CONEXÃO SQL -------------------
-        SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-1G4DC21\SQLEXPRESS; integrated security=SSPI; initial catalog=db_serverphdownloader");
+        //----TRAMPO
+        //SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-1G4DC21\SQLEXPRESS; integrated security=SSPI; initial catalog=db_serverphdownloader");
+        //----CASA
+        SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-0K1VNAB\SQLEXPRESS; integrated security=SSPI; initial catalog=db_servidor");
         SqlCommand cm = new SqlCommand();
         SqlDataReader dt;
 

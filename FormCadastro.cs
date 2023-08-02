@@ -27,7 +27,10 @@ namespace PhDownloaderV1
 
 
         //------------------------ CONEXÃO SQL -------------------
-        SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-1G4DC21\SQLEXPRESS; integrated security=SSPI; initial catalog=db_serverphdownloader");
+        //----TRAMPO
+        //SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-1G4DC21\SQLEXPRESS; integrated security=SSPI; initial catalog=db_serverphdownloader");
+        //----CASA
+        SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-0K1VNAB\SQLEXPRESS; integrated security=SSPI; initial catalog=db_servidor");
         SqlCommand cm = new SqlCommand();
         SqlDataReader dt;
 
@@ -135,8 +138,11 @@ namespace PhDownloaderV1
                     {
                         if (!dt.IsClosed) { dt.Close(); }
                         //----Informando os campos da tabela clientes e declarando variáveis
-                        strSQL = "insert into dbo.clientes(nome_cliente,email,usuario,senha,confirmar_senha)values(@nome,@email,@usuario,@senha1,@senha2)" ;
-                    
+                        //----TRAMPO
+                        //strSQL = "insert into dbo.clientes(nome_cliente,email,usuario,senha,confirmar_senha)values(@nome,@email,@usuario,@senha1,@senha2)" ;
+                        //---- CASA
+                        strSQL = "insert into dbo.clientes(nome,email,usuario,senha,confirmarSenha)values(@nome,@email,@usuario,@senha1,@senha2)";
+
                         //-------------------------- NOME COMPLETO -------------------------
                         //----Recebendo o texto do campo nome e inserindo na variável
                         cm.Parameters.Add("@nome", SqlDbType.VarChar).Value = txtNomeCompleto.Text;
@@ -167,7 +173,7 @@ namespace PhDownloaderV1
                         cm.ExecuteNonQuery();
 
                         //---- Mensagem confirmando o cadastro
-                        MessageBox.Show("Login criado com sucesso!", "Dados cadastrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Login criado com sucesso!", "Dados Cadastrais", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         //---- Fechando a consulta no banco
                         cm.Parameters.Clear();   
