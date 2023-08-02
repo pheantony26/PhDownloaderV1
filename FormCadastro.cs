@@ -82,6 +82,10 @@ namespace PhDownloaderV1
                 //---- Select no banco para consultar Usuário já cadastrado
                 string strSQL = "Select * from dbo.clientes where usuario = '" + txtNomeUsuario.Text + "'";
 
+                //---- Variável que valida o E-mail digitado
+                string validaEmail = txtEmail.Text;
+                bool Email = validaEmail.Contains("@") && validaEmail.Contains(".com");
+
                 //---- Validando se os campos estão em branco
                 if (String.IsNullOrWhiteSpace(txtNomeCompleto.Text))
                 {
@@ -103,9 +107,13 @@ namespace PhDownloaderV1
                 {
                     MessageBox.Show("Existem campos não preenchidos!", "Atenção");
                 }
+                else if (Email == false)
+                {
+                    MessageBox.Show("E-mail inválido","E-mail");
+                    txtEmail.Text = "";
+                }
                 else
                 {
-
                     //---- Use um comando SQL na conexão cn
                     cm.Connection = cn;
                     //---- O comando SQL será um comando de texto da variável strSQL
@@ -122,7 +130,6 @@ namespace PhDownloaderV1
 
                         //---- Mudar a cor do texto caso o Usuário já exista
                         lblUsuario.ForeColor = System.Drawing.Color.Red;
-
                     }
                     else
                     {
