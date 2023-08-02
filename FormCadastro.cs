@@ -73,98 +73,102 @@ namespace PhDownloaderV1
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
 
-            //---- Validação se os campos estão vazios ou em branco
-            if (string.IsNullOrWhiteSpace(txtNomeCompleto.Text))
-            {
-                MessageBox.Show("Existem campos não preenchidos");
-            }
-            else if (string.IsNullOrWhiteSpace(txtEmail.Text))
-            {
-                MessageBox.Show("Existem campos não preenchidos");
-            }
-            else if (string.IsNullOrWhiteSpace(txtNomeUsuario.Text))
-            {
-                MessageBox.Show("Existem campos não preenchidos");
-            }
-            else if (string.IsNullOrWhiteSpace(txtSenha.Text))
-            {
-                MessageBox.Show("Existem campos não preenchidos");
-            }
-            else if (string.IsNullOrWhiteSpace(txtConfirmarSenha.Text))
-            {
-                MessageBox.Show("Existem campos não preenchidos");
-            }
-
-
             //----- Select do SQL no Banco de Dados
             try
             {
                 //---- Abrir a conexão com o banco
                 cn.Open();
 
+                //---- Select no banco para consultar Usuário já cadastrado
                 string strSQL = "Select * from dbo.clientes where usuario = '" + txtNomeUsuario.Text + "'";
-                //---- Use um comando SQL na conexão cn
-                cm.Connection = cn;
-                //---- O comando SQL será um comando de texto da variável strSQL
-                cm.CommandText = strSQL;
-                //---- Executando o comando no Banco de Dados na variável dt que receberá toda a tabela "usuário"
-                dt = cm.ExecuteReader();
-                //---- Se houver linhas com o mesmo usuário digitado, será retornada a mensagem
-                if (dt.HasRows) //---HasRows = Verdade que existe linhas iguais?
+
+                //---- Validando se os campos estão em branco
+                if (String.IsNullOrWhiteSpace(txtNomeCompleto.Text))
                 {
-                    MessageBox.Show("Usuário já cadastrado!", "Calma ai amigão", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                    //---- Limpar os campos
-                    limparCampos();
-
-                    //---- Mudar a cor do texto caso o Usuário já exista
-                    lblUsuario.ForeColor = System.Drawing.Color.Red;
-
+                    MessageBox.Show("Existem campos não preenchidos!","Atenção");
+                }
+                else if (String.IsNullOrWhiteSpace(txtEmail.Text))
+                {
+                    MessageBox.Show("Existem campos não preenchidos!", "Atenção");
+                }
+                else if (string.IsNullOrWhiteSpace(txtNomeUsuario.Text))
+                {
+                    MessageBox.Show("Existem campos não preenchidos!", "Atenção");
+                }
+                else if (string.IsNullOrWhiteSpace(txtSenha.Text))
+                {
+                    MessageBox.Show("Existem campos não preenchidos!", "Atenção");
+                }
+                else if (string.IsNullOrWhiteSpace(txtConfirmarSenha.Text))
+                {
+                    MessageBox.Show("Existem campos não preenchidos!", "Atenção");
                 }
                 else
                 {
-                    if (!dt.IsClosed) { dt.Close(); }
-                    //----Informando os campos da tabela clientes e declarando variáveis
-                    strSQL = "insert into dbo.clientes(nome_cliente,email,usuario,senha,confirmar_senha)values(@nome,@email,@usuario,@senha1,@senha2)" ;
-                    
-                    //-------------------------- NOME COMPLETO -------------------------
-                    //----Recebendo o texto do campo nome e inserindo na variável
-                    cm.Parameters.Add("@nome", SqlDbType.VarChar).Value = txtNomeCompleto.Text;
-
-                    //-------------------------- EMAIL -------------------------
-                    //----Recebendo o texto do campo nome e inserindo na variável
-                    cm.Parameters.Add("@email", SqlDbType.VarChar).Value = txtEmail.Text;
-
-                    //-------------------------- USUARIO -------------------------
-                    //----Recebendo o texto do campo nome e inserindo na variável
-                    cm.Parameters.Add("@usuario", SqlDbType.VarChar).Value = txtNomeUsuario.Text;
-
-                    //-------------------------- SENHA -------------------------
-                    //----Recebendo o texto do campo nome e inserindo na variável
-                    cm.Parameters.Add("@senha1", SqlDbType.VarChar).Value = txtSenha.Text;
-
-                    //-------------------------- CONFIRMAR SENHA -------------------------
-                    //----Recebendo o texto do campo nome e inserindo na variável
-                    cm.Parameters.Add("@senha2", SqlDbType.VarChar).Value = txtConfirmarSenha.Text;
-
-
 
                     //---- Use um comando SQL na conexão cn
                     cm.Connection = cn;
                     //---- O comando SQL será um comando de texto da variável strSQL
                     cm.CommandText = strSQL;
-                    //---- Executar o comando
-                    cm.ExecuteNonQuery();
+                    //---- Executando o comando no Banco de Dados na variável dt que receberá toda a tabela "usuário"
+                    dt = cm.ExecuteReader();
+                    //---- Se houver linhas com o mesmo usuário digitado, será retornada a mensagem
+                    if (dt.HasRows) //---HasRows = Verdade que existe linhas iguais?
+                    {
+                        MessageBox.Show("Usuário já cadastrado!", "Calma ai amigão", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                    //---- Mensagem confirmando o cadastro
-                    MessageBox.Show("Login criado com sucesso!", "Dados cadastrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //---- Limpar os campos
+                        limparCampos();
 
-                    //---- Fechando a consulta no banco
-                    cm.Parameters.Clear();   
+                        //---- Mudar a cor do texto caso o Usuário já exista
+                        lblUsuario.ForeColor = System.Drawing.Color.Red;
+
+                    }
+                    else
+                    {
+                        if (!dt.IsClosed) { dt.Close(); }
+                        //----Informando os campos da tabela clientes e declarando variáveis
+                        strSQL = "insert into dbo.clientes(nome_cliente,email,usuario,senha,confirmar_senha)values(@nome,@email,@usuario,@senha1,@senha2)" ;
                     
-                    //---- Fechar o form quando o login for cadastrado
-                    this.Close();
-                   
+                        //-------------------------- NOME COMPLETO -------------------------
+                        //----Recebendo o texto do campo nome e inserindo na variável
+                        cm.Parameters.Add("@nome", SqlDbType.VarChar).Value = txtNomeCompleto.Text;
+
+                        //-------------------------- EMAIL -------------------------
+                        //----Recebendo o texto do campo nome e inserindo na variável
+                        cm.Parameters.Add("@email", SqlDbType.VarChar).Value = txtEmail.Text;
+
+                        //-------------------------- USUARIO -------------------------
+                        //----Recebendo o texto do campo nome e inserindo na variável
+                        cm.Parameters.Add("@usuario", SqlDbType.VarChar).Value = txtNomeUsuario.Text;
+
+                        //-------------------------- SENHA -------------------------
+                        //----Recebendo o texto do campo nome e inserindo na variável
+                        cm.Parameters.Add("@senha1", SqlDbType.VarChar).Value = txtSenha.Text;
+
+                        //-------------------------- CONFIRMAR SENHA -------------------------
+                        //----Recebendo o texto do campo nome e inserindo na variável
+                        cm.Parameters.Add("@senha2", SqlDbType.VarChar).Value = txtConfirmarSenha.Text;
+
+
+
+                        //---- Use um comando SQL na conexão cn
+                        cm.Connection = cn;
+                        //---- O comando SQL será um comando de texto da variável strSQL
+                        cm.CommandText = strSQL;
+                        //---- Executar o comando
+                        cm.ExecuteNonQuery();
+
+                        //---- Mensagem confirmando o cadastro
+                        MessageBox.Show("Login criado com sucesso!", "Dados cadastrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        //---- Fechando a consulta no banco
+                        cm.Parameters.Clear();   
+                    
+                        //---- Fechar o form quando o login for cadastrado
+                        this.Close();                  
+                 
+                    }
                 }
 
             }
@@ -174,6 +178,7 @@ namespace PhDownloaderV1
             }
             finally
             {
+                //---- Fechando conexão
                 cn.Close();
             }
 
